@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Application</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <aside>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Logo_PLN.svg" alt="Logo PLN">
+        <hr>
+        <nav onclick="showForm('form1')">Pelayanan Pelanggan dan Administrasi</nav>
+        <nav onclick="showForm('form2')">Kesehatan dan Keselamatan Kerja</nav>
+        <nav onclick="showForm('form3')">Transaksi Energi</nav>
+        <nav onclick="showForm('form4')">Teknik</nav>
+    </aside>
+    <section id="form-container">
+        <form id="form1" class="form" style="display:none;">
+            <div class="form-title">
+                <h2>Pelayanan Pelanggan dan Administrasi</h2>
+            </div>
+            <label for="nama1">Nama:</label>
+            <input type="text" id="nama1" name="nama1">
+            <label for="alamat1">Alamat:</label>
+            <input type="text" id="alamat1" name="alamat1">
+            <label for="status1">Status Pembayaran:</label>
+            <select id="status1" name="status1">
+                <option value="Pending Teknik">Pending Teknik</option>
+                <option value="Perluasan Jaringan">Perluasan Jaringan</option>
+                <option value="Belum Survey, Sudah WO">Belum Survey, Sudah WO</option>
+                <option value="Sudah Survey (Menunggu ACC)">Sudah Survey (Menunggu ACC)</option>
+                <option value="Sudah Survey (Siap Cetak PK)">Sudah Survey (Siap Cetak PK)</option>
+                <option value="Belum Survey (Belum WO)">Belum Survey (Belum WO)</option>
+            </select>
+            <label for="nama_penanggung_jawab">Nama Penanggung Jawab:</label>
+            <input type="text" id="nama_penanggung_jawab" name="nama_penanggung_jawab">
+            <label for="komentar1">Komentar:</label>
+            <textarea id="komentar1" name="komentar1"></textarea>
+            <button type="reset">Reset</button>
+            <button type="button" onclick="hideForm('form1')">Tutup</button>
+            <button type="button" onclick="printPDF('form1')">Print to PDF</button>
+        </form>
+        <form id="form2" class="form" style="display:none;">
+            <div class="form-title">
+                <h2>Kesehatan dan Keselamatan Kerja</h2>
+            </div>
+            <label for="nama_upl">Nama UPL:</label>
+            <select name="nama_upl" id="nama_upl">
+                <option value="UPL Majene">UPL Majene</option>
+            </select>
+            <label for="tgl_spk">Tanggal SPK:</label>
+            <input type="date" id="tgl_spk" name="tgl_spk">
+            <label for="jm_spk">Jam SPK:</label>
+            <input type="time" id="jm_spk" name="jm_spk">
+            <label for="nomor_sppnl">Nomor SPPNL:</label>
+            <input type="text" id="nomor_sppnl" name="nomor_sppnl">
+            <label for="kode_spk">Kode SPK:</label>
+            <input type="text" id="kode_spk" name="kode_spk">
+            <label for="nama_penanggung_jawab">Nama Penanggung Jawab:</label>
+            <input type="text" id="nama_penanggung_jawab" name="nama_penanggung_jawab">
+            <label for="alamat">Alamat:</label>
+            <input type="text" id="alamat" name="alamat">
+            <label for="lokasi">Lokasi:</label>
+            <input type="text" id="lokasi" name="lokasi" placeholder="Latitude Longitude" required>
+            <div id="map-picker"></div>
+            <label for="penerima_skp2">Penerima SKP2:</label>
+            <input type="text" id="penerima_skp2" name="penerima_skp2">
+            <label for="foto_temuan">Foto Temuan:</label>
+            <input type="file" id="foto_temuan" name="foto_temuan" accept="image/*">
+            <label for="foto_pemberian_skp2">Foto Pemberian SKP2:</label>
+            <input type="file" id="foto_pemberian_skp2" name="foto_pemberian_skp2" accept="image/*">
+            <label for="foto_spk2">Foto SPK2:</label>
+            <input type="file" id="foto_spk2" name="foto_spk2" accept="image/*">
+            <label for="keterangan">Keterangan:</label>
+            <textarea id="keterangan" name="keterangan"></textarea>
+            <button type="reset">Reset</button>
+            <button type="button" onclick="hideForm('form2')">Tutup</button>
+            <button type="button" onclick="printPDF('form2')">Print to PDF</button>
+        </form>
+        <form id="form3" class="form" style="display:none;">
+            <div class="form-title">
+                <h2>Transaksi Energi</h2>
+            </div>
+            <label for="name3">Nama:</label>
+            <input type="text" id="name3" name="name3">
+            <label for="email3">Email:</label>
+            <input type="email" id="email3" name="email3">
+            <button type="button" onclick="printPDF('form3')">Print to PDF</button>
+        </form>
+        <form id="form4" class="form" style="display:none;">
+            <div class="form-title">
+                <h2>Teknik</h2>
+            </div>
+            <label for="name4">Nama:</label>
+            <input type="text" id="name4" name="name4">
+            <label for="email4">Email:</label>
+            <input type="email" id="email4" name="email4">
+            <button type="button" onclick="printPDF('form4')">Print to PDF</button>
+        </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
